@@ -24,8 +24,9 @@
 
     </http>-->
 
-    <http>
-        <intercept-url pattern="/json/*" access="ROLE_VERIFIED" />
+    <http use-expressions="true">
+        <intercept-url access="hasRole('ROLE_VERIFIED')" pattern="/json/*"/>
+
         <http-basic />
     </http>
 
