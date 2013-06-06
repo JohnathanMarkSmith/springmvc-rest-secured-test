@@ -10,11 +10,9 @@
 
     <global-method-security pre-post-annotations="enabled"/>
 
-    <!--<http use-expressions="true">
+    <http use-expressions="true">
         <intercept-url access="hasRole('ROLE_VERIFIED')" pattern="/json/*"/>
         <intercept-url pattern='/*' access='permitAll'/>
-
-        <form-login default-target-url="/"/>
 
         <logout logout-success-url="/"/>
 
@@ -22,13 +20,10 @@
             <concurrency-control max-sessions="1"/>
         </session-management>
 
-    </http>-->
-
-    <http use-expressions="true">
-        <intercept-url access="hasRole('ROLE_VERIFIED')" pattern="/json/*"/>
-
         <http-basic />
+
     </http>
+
 
     <authentication-manager>
         <authentication-provider>
