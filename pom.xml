@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>springmvc-rest-test</groupId>
-    <artifactId>springmvc-rest-test</artifactId>
+    <groupId>springmvc-rest-secured-test</groupId>
+    <artifactId>springmvc-rest-secured-test</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>springmvc-rest-test Maven Webapp</name>
+    <name>springmvc-rest-secured-test Maven Webapp</name>
     <url>http://maven.apache.org</url>
 
     <developers>
@@ -62,6 +62,23 @@
                     <artifactId>commons-logging</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>3.1.4.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>3.1.4.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>3.1.4.RELEASE</version>
         </dependency>
 
 
@@ -223,7 +240,7 @@
             </plugin>
         </plugins>
 
-        <finalName>springmvc-rest-test</finalName>
+        <finalName>springmvc-rest-secured-test</finalName>
     </build>
 
 </project>
