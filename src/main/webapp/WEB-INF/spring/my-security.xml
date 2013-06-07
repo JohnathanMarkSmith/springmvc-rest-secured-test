@@ -21,7 +21,6 @@
         </session-management>
 
         <http-basic />
-
     </http>
 
 
