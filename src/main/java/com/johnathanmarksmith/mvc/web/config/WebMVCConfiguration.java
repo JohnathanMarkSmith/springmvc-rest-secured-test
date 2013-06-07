@@ -1,4 +1,4 @@
-package com.johnathanmsmith.mvc.web.config;
+package com.johnathanmarksmith.mvc.web.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,7 +29,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = {"com.johnathanmsmith.mvc.web"})
+@ComponentScan(basePackages = {"com.johnathanmarksmith.mvc.web"})
 @ImportResource("/WEB-INF/spring/applicationContext.xml")
 public class WebMVCConfiguration extends WebMvcConfigurerAdapter
 {

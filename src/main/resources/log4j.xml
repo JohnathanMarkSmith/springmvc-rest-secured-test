@@ -8,9 +8,15 @@
         </layout>
     </appender>
 
+
+    <logger name="com.johnathanmarksmith">
+        <level value="trace"/>
+    </logger>
+
+
     <root>
-        <priority value="DEBUG"/>
-        <appender-ref ref="console"/>
+        <priority value="WARN"/>
+
     </root>
 
 

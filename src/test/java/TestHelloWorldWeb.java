@@ -1,4 +1,4 @@
-import com.johnathanmsmith.mvc.web.config.WebMVCConfiguration;
+import com.johnathanmarksmith.mvc.web.config.WebMVCConfiguration;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

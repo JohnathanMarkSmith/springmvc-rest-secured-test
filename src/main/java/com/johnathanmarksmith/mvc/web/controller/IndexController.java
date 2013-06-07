@@ -1,4 +1,4 @@
-package com.johnathanmsmith.mvc.web.controller;
+package com.johnathanmarksmith.mvc.web.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

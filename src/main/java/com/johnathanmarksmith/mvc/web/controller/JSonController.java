@@ -1,14 +1,12 @@
-package com.johnathanmsmith.mvc.web.controller;
+package com.johnathanmarksmith.mvc.web.controller;
 
-import com.johnathanmsmith.mvc.web.model.User;
+import com.johnathanmarksmith.mvc.web.exception.ResourceNotFoundException;
+import com.johnathanmarksmith.mvc.web.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Date:   6/5/13 / 7:58 AM
@@ -31,7 +29,7 @@ class JSonController
 
     @RequestMapping(value = "/{name}", method = RequestMethod.GET)
     @ResponseBody
-    public User getName(@PathVariable String name, ModelMap model)
+    public User getName(@PathVariable String name, ModelMap model) throws ResourceNotFoundException
     {
 
         logger.debug("I am in the controller and got user name: " + name);
@@ -51,7 +49,8 @@ class JSonController
         {
             return new User("Regan Smith", name);
         }
-        return null;
+
+        throw new ResourceNotFoundException("User Is Not Found");
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -66,6 +65,13 @@ class JSonController
          */
 
         return new User("Johnathan Mark Smith", "JohnathanMarkSmith");
+
+    }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public void handleResourceNotFoundException(ResourceNotFoundException ex)
+    {
+        logger.warn("user requested a resource which didn't exist", ex);
 
     }
 }

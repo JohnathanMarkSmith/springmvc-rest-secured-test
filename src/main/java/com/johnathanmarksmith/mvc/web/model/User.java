@@ -1,4 +1,4 @@
-package com.johnathanmsmith.mvc.web.model;
+package com.johnathanmarksmith.mvc.web.model;
 
 /**
  * Date:   6/6/13 / 10:09 AM
