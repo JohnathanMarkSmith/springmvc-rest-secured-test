@@ -20,7 +20,7 @@
             <concurrency-control max-sessions="1"/>
         </session-management>
 
-        <http-basic />
+        <http-basic/>
     </http>
 
 
