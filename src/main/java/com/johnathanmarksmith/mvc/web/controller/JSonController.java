@@ -4,6 +4,7 @@ import com.johnathanmarksmith.mvc.web.exception.ResourceNotFoundException;
 import com.johnathanmarksmith.mvc.web.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -69,9 +70,12 @@ class JSonController
     }
 
     @ExceptionHandler(ResourceNotFoundException.class)
-    public void handleResourceNotFoundException(ResourceNotFoundException ex)
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
+    public String handleResourceNotFoundException(ResourceNotFoundException ex)
     {
         logger.warn("user requested a resource which didn't exist", ex);
+        return "user requested a resource which didn't exist";
+
 
     }
 }
