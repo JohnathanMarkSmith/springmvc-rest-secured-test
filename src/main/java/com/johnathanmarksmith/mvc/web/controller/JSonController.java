@@ -59,16 +59,8 @@ class JSonController
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    @ResponseBody
     public ResponseEntity<User> getDisplayDefault(ModelMap model)
     {
-
-        /*
-
-            you did not enter a name so the default is going to run
-
-         */
-
         return new ResponseEntity<User>(new User("Johnathan Mark Smith", "JohnathanMarkSmith"), HttpStatus.OK);
     }
 
@@ -83,7 +75,6 @@ class JSonController
 
 
     @ExceptionHandler
-    @ResponseBody
     public ResponseEntity<ErrorHolder> handle(ResourceNotFoundException e) {
         logger.warn("The resource was not found", e);
         return new ResponseEntity<ErrorHolder>(new ErrorHolder("Uh oh"), HttpStatus.NOT_FOUND);
