@@ -65,15 +65,6 @@ class JSonController
     }
 
 
-    /*@ExceptionHandler(ResourceNotFoundException.class)
-    @ResponseStatus(value = HttpStatus.NOT_FOUND)
-    public ModelAndView handleResourceNotFoundException(ResourceNotFoundException ex)
-    {
-        logger.warn("user requested a resource which didn't exist", ex);
-        return new ModelAndView( jsonView, "error", "user requested a resource which didn't exist");
-    }*/
-
-
     @ExceptionHandler
     public ResponseEntity<ErrorHolder> handle(ResourceNotFoundException e) {
         logger.warn("The resource was not found", e);
