@@ -60,7 +60,7 @@ class JSonController
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     @ResponseBody
-    public User getDisplayDefault(ModelMap model)
+    public ResponseEntity<User> getDisplayDefault(ModelMap model)
     {
 
         /*
@@ -69,8 +69,7 @@ class JSonController
 
          */
 
-        return new User("Johnathan Mark Smith", "JohnathanMarkSmith");
-
+        return new ResponseEntity<User>(new User("Johnathan Mark Smith", "JohnathanMarkSmith"), HttpStatus.OK);
     }
 
 
@@ -84,8 +83,8 @@ class JSonController
 
 
     @ExceptionHandler
-    public @ResponseBody
-    ResponseEntity<ErrorHolder> handle(ResourceNotFoundException e) {
+    @ResponseBody
+    public ResponseEntity<ErrorHolder> handle(ResourceNotFoundException e) {
         logger.warn("The resource was not found", e);
         return new ResponseEntity<ErrorHolder>(new ErrorHolder("Uh oh"), HttpStatus.NOT_FOUND);
     }

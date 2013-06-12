@@ -13,8 +13,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
 
 /**
  * Date:   6/5/13 / 9:05 AM
@@ -33,7 +33,6 @@ public class TestHelloWorldWeb
 {
     @Autowired
     private WebApplicationContext wac;
-
     private MockMvc mockMvc;
 
     @Before
@@ -43,7 +42,7 @@ public class TestHelloWorldWeb
     }
 
     @Test
-    public void getFoo() throws Exception
+    public void getHTML() throws Exception
     {
         /*
             This following code will do 'GET' to the web apps
@@ -55,9 +54,22 @@ public class TestHelloWorldWeb
                 .accept(MediaType.TEXT_HTML))
                 .andExpect(status().isOk())
                 .andExpect(view().name("helloworld"))
-                .andExpect(MockMvcResultMatchers.model().attribute("user", "JohnathanMarkSmith"))
-        ;
+                .andExpect(MockMvcResultMatchers.model().attribute("user", "JohnathanMarkSmith"));
 
 
+    }
+
+    @Test
+    public void getJSON() throws Exception
+    {
+        /*
+            This following code will do 'GET' to the web apps
+            and also that it has a attribute "user" to "JohnathanMarkSmith"
+
+         */
+        this.mockMvc.perform(get("/json/JohnathanMarkSmith")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.user").value("Johnathan Mark Smith"));
     }
 }
