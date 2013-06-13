@@ -2,6 +2,8 @@ package com.johnathanmarksmith.mvc.web.controller;
 
 import com.johnathanmarksmith.mvc.web.exception.ResourceNotFoundException;
 import com.johnathanmarksmith.mvc.web.model.User;
+import org.codehaus.jackson.annotate.JsonCreator;
+import org.codehaus.jackson.annotate.JsonProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -74,8 +76,11 @@ class JSonController
 
     class ErrorHolder {
         public String errorMessage;
-        public ErrorHolder(String errorMessage) {
+        @JsonCreator
+        public ErrorHolder(@JsonProperty("errorMessage") String errorMessage)
+        {
             this.errorMessage = errorMessage;
         }
+
     }
 }

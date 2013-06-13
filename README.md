@@ -152,10 +152,12 @@ Now lets setup a basic JSON controller to sent json data back to the client:
 
         private static final Logger logger = LoggerFactory.getLogger(JSonController.class);
 
+        private MappingJacksonJsonView  jsonView = new MappingJacksonJsonView();
+
 
         @RequestMapping(value = "/{name}", method = RequestMethod.GET)
         @ResponseBody
-        public User getName(@PathVariable String name, ModelMap model)
+        public User getName(@PathVariable String name, ModelMap model) throws ResourceNotFoundException
         {
 
             logger.debug("I am in the controller and got user name: " + name);
@@ -175,21 +177,31 @@ Now lets setup a basic JSON controller to sent json data back to the client:
             {
                 return new User("Regan Smith", name);
             }
-            return null;
+
+            throw new ResourceNotFoundException("User Is Not Found");
         }
 
         @RequestMapping(value = "/", method = RequestMethod.GET)
-        @ResponseBody
-        public User getDisplayDefault(ModelMap model)
+        public ResponseEntity<User> getDisplayDefault(ModelMap model)
         {
+            return new ResponseEntity<User>(new User("Johnathan Mark Smith", "JohnathanMarkSmith"), HttpStatus.OK);
+        }
 
-            /*
 
-                you did not enter a name so the default is going to run
+        @ExceptionHandler
+        public ResponseEntity<ErrorHolder> handle(ResourceNotFoundException e) {
+            logger.warn("The resource was not found", e);
+            return new ResponseEntity<ErrorHolder>(new ErrorHolder("Uh oh"), HttpStatus.NOT_FOUND);
+        }
 
-             */
 
-            return new User("Johnathan Mark Smith", "JohnathanMarkSmith");
+        class ErrorHolder {
+            public String errorMessage;
+            @JsonCreator
+            public ErrorHolder(@JsonProperty("errorMessage") String errorMessage)
+            {
+                this.errorMessage = errorMessage;
+            }
 
         }
     }
