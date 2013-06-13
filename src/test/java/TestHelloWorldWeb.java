@@ -41,6 +41,21 @@ public class TestHelloWorldWeb
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
     }
 
+
+    @Test
+    public void getJSONError() throws Exception
+    {
+        /*
+            This following code will do 'GET' to the web apps
+            and also that it has a attribute "user" to "JohnathanMarkSmith"
+
+         */
+        this.mockMvc.perform(get("/json/NOUSER")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.errorMessage").value("The resource was not found"));
+    }
+
     @Test
     public void getHTML() throws Exception
     {
