@@ -11,7 +11,7 @@
     <global-method-security pre-post-annotations="enabled"/>
 
     <http use-expressions="true">
-        <intercept-url access="hasRole('ROLE_VERIFIED')" pattern="/json/*"/>
+        <intercept-url access="hasRole('ROLE_VERIFIED')" pattern="/json/**"/>
         <intercept-url pattern='/*' access='permitAll'/>
 
         <logout logout-success-url="/"/>
